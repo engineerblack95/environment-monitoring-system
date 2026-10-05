@@ -12,12 +12,12 @@
 #include <DHT.h>
 
 // ================== CONFIGURATION ==================
-const char* WIFI_SSID     = "YOUR_WIFI_NAME";
-const char* WIFI_PASSWORD = "YOUR_WIFI_PASSWORD";
+const char* WIFI_SSID     = "SanTech-Networking";
+const char* WIFI_PASSWORD = "Networking112@";
 
 // Replace with your PC's LAN IP (run `ipconfig` on Windows)
 // Example: http://192.168.1.100:5000/api/readings
-const char* API_URL       = "http://192.168.1.100:5000/api/readings";
+const char* API_URL       = "http://192.168.8.14:5000/api/readings";
 
 const char* DEVICE_ID     = "ENV-001";
 
