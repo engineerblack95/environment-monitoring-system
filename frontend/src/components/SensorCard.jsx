@@ -6,17 +6,17 @@ function SensorCard({ title, value, unit, classification, icon, trend }) {
   return (
     <div style={{
       position: 'relative',
-      background: 'var(--surface)',
+      background: '#ffffff',
       borderRadius: 'var(--radius-lg)',
       padding: '22px 22px 20px',
-      border: '1px solid var(--border-light)',
+      border: '1px solid var(--border)',
       boxShadow: 'var(--shadow)',
       overflow: 'hidden',
       transition: 'transform 0.2s ease, box-shadow 0.2s ease',
       minWidth: 0,
     }}
     onMouseEnter={(e) => {
-      e.currentTarget.style.transform = 'translateY(-2px)';
+      e.currentTarget.style.transform = 'translateY(-3px)';
       e.currentTarget.style.boxShadow = 'var(--shadow-md)';
     }}
     onMouseLeave={(e) => {
@@ -31,7 +31,18 @@ function SensorCard({ title, value, unit, classification, icon, trend }) {
         left: 0,
         right: 0,
         height: '3px',
-        background: `linear-gradient(90deg, ${accent}, ${accent}80)`,
+        background: `linear-gradient(90deg, ${accent}, ${accent}66)`,
+      }} />
+
+      {/* Radial glow */}
+      <div style={{
+        position: 'absolute',
+        top: '-40px',
+        left: '-40px',
+        width: '150px',
+        height: '150px',
+        background: `radial-gradient(circle, ${accent}12 0%, transparent 70%)`,
+        pointerEvents: 'none',
       }} />
 
       {/* Header row */}
@@ -40,26 +51,28 @@ function SensorCard({ title, value, unit, classification, icon, trend }) {
         alignItems: 'center',
         justifyContent: 'space-between',
         marginBottom: '16px',
+        position: 'relative',
       }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
           <div style={{
-            width: '34px',
-            height: '34px',
+            width: '38px',
+            height: '38px',
             borderRadius: '10px',
-            background: `${accent}1a`,
+            background: `${accent}12`,
+            border: `1px solid ${accent}22`,
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            fontSize: '18px',
+            fontSize: '19px',
           }}>
             {icon}
           </div>
           <span style={{
-            fontSize: '12px',
+            fontSize: '11.5px',
             fontWeight: 600,
-            color: 'var(--gray-500)',
+            color: 'var(--text-tertiary)',
             textTransform: 'uppercase',
-            letterSpacing: '0.06em',
+            letterSpacing: '0.08em',
           }}>
             {title}
           </span>
@@ -74,13 +87,14 @@ function SensorCard({ title, value, unit, classification, icon, trend }) {
             borderRadius: 'var(--radius-pill)',
             background: `${classification.color}15`,
             color: classification.color,
-            fontSize: '11px',
+            fontSize: '10.5px',
             fontWeight: 700,
-            letterSpacing: '0.02em',
+            letterSpacing: '0.04em',
+            border: `1px solid ${classification.color}33`,
           }}>
             <span style={{
-              width: '6px',
-              height: '6px',
+              width: '5px',
+              height: '5px',
               borderRadius: '50%',
               background: classification.color,
             }} />
@@ -94,13 +108,14 @@ function SensorCard({ title, value, unit, classification, icon, trend }) {
         display: 'flex',
         alignItems: 'baseline',
         gap: '6px',
-        marginBottom: '6px',
+        marginBottom: '4px',
+        position: 'relative',
       }}>
         <span style={{
-          fontSize: '38px',
+          fontSize: '40px',
           fontWeight: 700,
           letterSpacing: '-0.03em',
-          color: 'var(--gray-900)',
+          color: 'var(--text-primary)',
           lineHeight: 1,
           fontVariantNumeric: 'tabular-nums',
         }}>
@@ -109,7 +124,7 @@ function SensorCard({ title, value, unit, classification, icon, trend }) {
         <span style={{
           fontSize: '15px',
           fontWeight: 500,
-          color: 'var(--gray-400)',
+          color: 'var(--text-tertiary)',
         }}>
           {unit}
         </span>
@@ -117,25 +132,24 @@ function SensorCard({ title, value, unit, classification, icon, trend }) {
         {trend === 'up' && (
           <span style={{
             marginLeft: 'auto',
-            fontSize: '12px',
+            fontSize: '13px',
             color: 'var(--success)',
-            fontWeight: 600,
+            fontWeight: 700,
           }}>↑</span>
         )}
         {trend === 'down' && (
           <span style={{
             marginLeft: 'auto',
-            fontSize: '12px',
+            fontSize: '13px',
             color: 'var(--danger)',
-            fontWeight: 600,
+            fontWeight: 700,
           }}>↓</span>
         )}
       </div>
 
-      {/* Subtext */}
       <div style={{
-        fontSize: '12.5px',
-        color: 'var(--gray-400)',
+        fontSize: '12px',
+        color: 'var(--text-tertiary)',
         marginTop: '2px',
       }}>
         Live reading

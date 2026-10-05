@@ -1,13 +1,6 @@
 import React from 'react';
 import {
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-  ResponsiveContainer,
+  LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer,
 } from 'recharts';
 
 function HistoryChart({ data }) {
@@ -20,10 +13,10 @@ function HistoryChart({ data }) {
 
   return (
     <div style={{
-      background: 'var(--surface)',
+      background: '#ffffff',
       borderRadius: 'var(--radius-lg)',
       padding: '24px 24px 16px',
-      border: '1px solid var(--border-light)',
+      border: '1px solid var(--border)',
       boxShadow: 'var(--shadow)',
     }}>
       <div style={{
@@ -31,15 +24,13 @@ function HistoryChart({ data }) {
         justifyContent: 'space-between',
         alignItems: 'flex-start',
         marginBottom: '20px',
-        flexWrap: 'wrap',
-        gap: '12px',
       }}>
         <div>
           <h3 style={{
             margin: 0,
             fontSize: '17px',
             fontWeight: 600,
-            color: 'var(--gray-800)',
+            color: 'var(--text-primary)',
             letterSpacing: '-0.01em',
           }}>
             Sensor History
@@ -47,7 +38,7 @@ function HistoryChart({ data }) {
           <p style={{
             margin: '4px 0 0 0',
             fontSize: '13px',
-            color: 'var(--gray-500)',
+            color: 'var(--text-secondary)',
           }}>
             Last {formatted.length} readings
           </p>
@@ -56,34 +47,19 @@ function HistoryChart({ data }) {
 
       <ResponsiveContainer width="100%" height={340}>
         <LineChart data={formatted} margin={{ top: 6, right: 8, bottom: 6, left: -8 }}>
-          <defs>
-            <linearGradient id="tempGradient" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#ef4444" stopOpacity={0.12} />
-              <stop offset="100%" stopColor="#ef4444" stopOpacity={0} />
-            </linearGradient>
-            <linearGradient id="humGradient" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#3b82f6" stopOpacity={0.12} />
-              <stop offset="100%" stopColor="#3b82f6" stopOpacity={0} />
-            </linearGradient>
-            <linearGradient id="aqGradient" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#f59e0b" stopOpacity={0.18} />
-              <stop offset="100%" stopColor="#f59e0b" stopOpacity={0} />
-            </linearGradient>
-          </defs>
-
           <CartesianGrid strokeDasharray="3 4" stroke="#eef1f5" vertical={false} />
           <XAxis
             dataKey="time"
-            stroke="#9ca3af"
-            tick={{ fontSize: 11, fill: '#9ca3af' }}
+            stroke="#94a3b8"
+            tick={{ fontSize: 11, fill: '#94a3b8' }}
             tickLine={false}
             axisLine={{ stroke: '#e5e7eb' }}
             minTickGap={30}
           />
           <YAxis
             yAxisId="left"
-            stroke="#9ca3af"
-            tick={{ fontSize: 11, fill: '#9ca3af' }}
+            stroke="#94a3b8"
+            tick={{ fontSize: 11, fill: '#94a3b8' }}
             tickLine={false}
             axisLine={false}
             domain={[0, 'dataMax + 10']}
@@ -91,21 +67,22 @@ function HistoryChart({ data }) {
           <YAxis
             yAxisId="right"
             orientation="right"
-            stroke="#9ca3af"
-            tick={{ fontSize: 11, fill: '#9ca3af' }}
+            stroke="#94a3b8"
+            tick={{ fontSize: 11, fill: '#94a3b8' }}
             tickLine={false}
             axisLine={false}
           />
           <Tooltip
             contentStyle={{
-              background: 'white',
-              border: '1px solid var(--border)',
+              background: '#0f172a',
+              border: '1px solid #334155',
               borderRadius: '10px',
-              boxShadow: 'var(--shadow-md)',
+              boxShadow: '0 20px 40px rgba(0,0,0,0.25)',
               fontSize: '13px',
               padding: '10px 14px',
+              color: '#f1f5f9',
             }}
-            labelStyle={{ color: 'var(--gray-500)', fontSize: '12px', marginBottom: '4px' }}
+            labelStyle={{ color: '#94a3b8', fontSize: '12px', marginBottom: '4px' }}
           />
           <Legend
             wrapperStyle={{ fontSize: '13px', paddingTop: '10px' }}
@@ -120,7 +97,7 @@ function HistoryChart({ data }) {
             name="Temperature (°C)"
             strokeWidth={2.5}
             dot={false}
-            activeDot={{ r: 4, strokeWidth: 0 }}
+            activeDot={{ r: 5, strokeWidth: 0 }}
           />
           <Line
             yAxisId="left"
@@ -130,7 +107,7 @@ function HistoryChart({ data }) {
             name="Humidity (%)"
             strokeWidth={2.5}
             dot={false}
-            activeDot={{ r: 4, strokeWidth: 0 }}
+            activeDot={{ r: 5, strokeWidth: 0 }}
           />
           <Line
             yAxisId="right"
@@ -140,7 +117,7 @@ function HistoryChart({ data }) {
             name="Air Quality (raw)"
             strokeWidth={2.5}
             dot={false}
-            activeDot={{ r: 4, strokeWidth: 0 }}
+            activeDot={{ r: 5, strokeWidth: 0 }}
           />
         </LineChart>
       </ResponsiveContainer>

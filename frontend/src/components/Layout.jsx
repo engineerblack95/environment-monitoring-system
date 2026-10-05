@@ -8,13 +8,12 @@ function Layout({ children, deviceStatus, lastSeen }) {
       minHeight: '100vh',
       display: 'flex',
       flexDirection: 'column',
-      background: 'var(--bg)',
     }}>
       <Navbar deviceStatus={deviceStatus} />
 
       <main style={{
         flex: 1,
-        padding: '32px 0',
+        padding: '36px 0 48px',
       }}>
         <div className="container">
           {children}
