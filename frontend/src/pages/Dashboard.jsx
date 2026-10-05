@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { getLatestReading, getHistory, getDeviceStatus } from '../services/api';
 import { classifyAirQuality, classifyTemperature, classifyHumidity } from '../services/classify';
 import SensorCard from '../components/SensorCard';
@@ -11,7 +11,7 @@ function Dashboard({ onStatusChange }) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const fetchData = async () => {
+  const fetchData = useCallback(async () => {
     try {
       const [latestRes, historyRes, statusRes] = await Promise.all([
         getLatestReading(),
@@ -27,13 +27,13 @@ function Dashboard({ onStatusChange }) {
     } finally {
       setLoading(false);
     }
-  };
+  }, [onStatusChange]);
 
   useEffect(() => {
     fetchData();
     const interval = setInterval(fetchData, 5000);
     return () => clearInterval(interval);
-  }, []);
+  }, [fetchData]);
 
   if (loading) {
     return (
